@@ -1,0 +1,196 @@
+/* ==================== GLOBAL STYLES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* ==================== CARD & PRODUCT ==================== */
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    background-color: #f8f9fa;
+}
+
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeIn 0.5s ease-out;
+    border: none;
+    border-radius: 15px;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+.badge-price {
+    font-size: 1.1rem;
+    padding: 8px 15px;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* ==================== ALERT & NOTIFICATION ==================== */
+.alert-no-products {
+    text-align: center;
+    padding: 60px;
+    border-radius: 15px;
+}
+
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    min-width: 250px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.sync-badge {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    z-index: 1000;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn-admin, .btn-login-quick {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    border-radius: 50px;
+    padding: 12px 24px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.btn-login-quick {
+    right: auto;
+    left: 30px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+}
+
+.btn-login-quick:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #20c997, #28a745);
+}
+
+.btn-admin:hover {
+    transform: translateY(-3px);
+}
+
+/* ==================== USER INFO ==================== */
+.user-info {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.user-info i {
+    margin-right: 5px;
+}
+
+.logout-quick {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #ff6b6b;
+}
+
+.logout-quick:hover {
+    color: #ff4444;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+    background: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 20px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .badge-price {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+    
+    .btn-admin, .btn-login-quick {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .user-info {
+        top: 70px;
+        right: 10px;
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+}
