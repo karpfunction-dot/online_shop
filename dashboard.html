@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Toko Online</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light d-md-none me-2" data-bs-toggle="offcanvas" data-bs-target="#sidebarMobile">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="index.html" target="_blank"><i class="fas fa-store me-2"></i>Toko Siswa</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html" target="_blank"><i class="fas fa-eye me-1"></i> Etalase</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-user-shield me-1"></i> Admin</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item logout-btn" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start offcanvas-sidebar" id="sidebarMobile">
+        <div class="offcanvas-header">
+            <h5 class="text-white"><i class="fas fa-store me-2"></i>Menu Admin</h5>
+            <button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav flex-column">
+                <li><a class="nav-link" href="#" onclick="location.reload()"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                <li><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#productModal" onclick="openProductModal()"><i class="fas fa-plus-circle me-2"></i>Tambah Produk</a></li>
+                <li><a class="nav-link" href="index.html" target="_blank"><i class="fas fa-store me-2"></i>Lihat Etalase</a></li>
+                <li><a class="nav-link text-danger logout-btn" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="d-none d-md-block col-md-3 col-lg-2 sidebar p-0">
+                <div class="position-sticky pt-3">
+                    <h5 class="text-center"><i class="fas fa-store me-2"></i>Menu Admin</h5>
+                    <ul class="nav flex-column">
+                        <li><a class="nav-link" href="#" onclick="location.reload()"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#productModal" onclick="openProductModal()"><i class="fas fa-plus-circle"></i> Tambah Produk</a></li>
+                        <li><a class="nav-link" href="index.html" target="_blank"><i class="fas fa-store"></i> Lihat Etalase</a></li>
+                        <li class="mt-4"><a class="nav-link text-warning logout-btn" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-9 col-lg-10 main-content">
+                <div class="row mb-4">
+                    <div class="col-md-6"><div class="stats-card text-center"><i class="fas fa-box-open stats-icon"></i><h3 id="totalProducts">0</h3><p>Total Produk</p></div></div>
+                    <div class="col-md-6"><div class="stats-card text-center"><i class="fas fa-chart-line stats-icon"></i><h3 id="totalValue">Rp 0</h3><p>Total Nilai</p></div></div>
+                </div>
+                <div class="d-flex justify-content-between mb-4"><h3><i class="fas fa-shopping-cart me-2"></i>Manajemen Produk</h3><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productModal" onclick="openProductModal()"><i class="fas fa-plus-circle me-2"></i>Tambah Produk</button></div>
+                <div class="table-container"><div class="table-responsive"><table class="table table-hover"><thead class="table-dark"><tr><th>ID</th><th>Gambar</th><th>Nama</th><th>Deskripsi</th><th>Harga</th><th>Aksi</th></tr></thead><tbody id="adminProductTable"></tbody></table></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title text-white" id="modalTitle"><i class="fas fa-plus-circle me-2"></i>Tambah Produk</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <input type="hidden" id="productId">
+                        <div class="mb-3"><label class="form-label">Nama Produk *</label><input type="text" class="form-control" id="productName" required></div>
+                        <div class="mb-3"><label class="form-label">Deskripsi</label><textarea class="form-control" id="productDesc" rows="3"></textarea></div>
+                        <div class="mb-3"><label class="form-label">Harga (Rp) *</label><input type="number" class="form-control" id="productPrice" required min="0"></div>
+                        <div class="mb-3"><label class="form-label">URL Gambar</label><input type="text" class="form-control" id="productImage" placeholder="assets/images/produk1.png"></div>
+                    </form>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button><button type="button" class="btn btn-primary" id="saveProductBtn">Simpan</button></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer text-white text-center p-3 mt-4"><div class="container"><i class="fas fa-store me-2"></i> &copy; 2026 Toko Online Siswa - Panel Admin</div></footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
