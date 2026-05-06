@@ -194,3 +194,23 @@ body {
         padding: 5px 10px;
     }
 }
+
+/* Mengatur area gambar agar seragam */
+#productListFront .card-img-top {
+    height: 200px;          /* Tentukan tinggi seragam untuk semua gambar */
+    width: 100%;            /* Memastikan lebar penuh mengikuti card */
+    object-fit: contain;    /* Menjaga seluruh produk terlihat tanpa terpotong */
+    padding: 15px;          /* Memberi ruang agar gambar tidak menempel ke pinggir */
+    background-color: #fff; /* Memberi latar putih jika gambar asli transparan */
+}
+
+/* Memastikan card memiliki tinggi yang sama (agar tombol sejajar) */
+#productListFront .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#productListFront .card-body {
+    flex-grow: 1;           /* Membuat konten body mengisi sisa ruang */
+}
